@@ -97,9 +97,35 @@
                                     </mask>
                                 </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H2z-kd-k7n">
+                                <rect key="frame" x="163" y="273" width="275" height="53"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="209" id="BN6-Va-nwG"/>
+                                    <constraint firstAttribute="height" constant="53" id="FIm-rm-gRg"/>
+                                    <constraint firstAttribute="width" constant="350" id="HIm-Ht-Ngn"/>
+                                    <constraint firstAttribute="height" constant="40" id="VpT-WD-gCH"/>
+                                    <constraint firstAttribute="width" constant="275" id="uuW-d0-0sM"/>
+                                    <constraint firstAttribute="height" constant="67" id="zjO-RS-6w3"/>
+                                </constraints>
+                                <state key="normal" image="Restart">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="BN6-Va-nwG"/>
+                                        <exclude reference="HIm-Ht-Ngn"/>
+                                        <exclude reference="VpT-WD-gCH"/>
+                                        <exclude reference="zjO-RS-6w3"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onRestartTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MLX-dp-RyT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="H2z-kd-k7n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0hj-Ac-Gnn"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K08-53-Apy" secondAttribute="bottom" id="3ZE-we-yqc"/>
                             <constraint firstItem="K08-53-Apy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="3ZF-YM-6pa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yiO-2D-3ot" secondAttribute="bottom" id="6HY-Cr-LMm"/>
@@ -111,6 +137,7 @@
                             <constraint firstItem="A4E-uG-qRb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-80" id="IkB-EE-K4Q"/>
                             <constraint firstItem="eZg-DC-gdN" firstAttribute="top" secondItem="XVi-pR-o2g" secondAttribute="bottom" constant="25" id="OkX-Mn-x6J"/>
                             <constraint firstItem="K08-53-Apy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TJF-Iw-QVg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H2z-kd-k7n" secondAttribute="bottom" constant="5" id="UXT-a7-taz"/>
                             <constraint firstAttribute="trailing" secondItem="yiO-2D-3ot" secondAttribute="trailing" id="VpQ-TU-fGE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="A4E-uG-qRb" secondAttribute="bottom" constant="37" id="WIF-Fq-LzQ"/>
                             <constraint firstAttribute="top" secondItem="XVi-pR-o2g" secondAttribute="top" constant="-10" id="acM-xc-w40">
@@ -121,6 +148,7 @@
                             <constraint firstItem="9Rb-sW-7Rj" firstAttribute="top" secondItem="XVi-pR-o2g" secondAttribute="top" constant="13" id="kNk-x6-W8c"/>
                             <constraint firstItem="XVi-pR-o2g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ozc-q3-BW8"/>
                             <constraint firstItem="eZg-DC-gdN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vlj-8d-tdc"/>
+                            <constraint firstItem="H2z-kd-k7n" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="w1y-CR-elD"/>
                             <constraint firstItem="eZg-DC-gdN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="z8r-f1-JgS"/>
                         </constraints>
                         <variation key="default">
@@ -130,6 +158,7 @@
                                 <exclude reference="Dp7-5g-9wy"/>
                                 <exclude reference="cAE-6o-SL7"/>
                                 <exclude reference="z8r-f1-JgS"/>
+                                <exclude reference="UXT-a7-taz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -150,6 +179,7 @@
                         <outlet property="foodImage" destination="qmI-tw-Yod" id="p50-Mh-IPO"/>
                         <outlet property="heartImage" destination="Kxf-YJ-ED5" id="9iL-ZD-hK1"/>
                         <outlet property="monsterImage" destination="A4E-uG-qRb" id="fmD-BK-Dce"/>
+                        <outlet property="restartButton" destination="H2z-kd-k7n" id="teG-Ew-F3M"/>
                         <outlet property="skull1Img" destination="WBD-j2-quB" id="7nT-F2-R9A"/>
                         <outlet property="skull2Img" destination="iRh-f8-Wru" id="q95-Pf-MHm"/>
                         <outlet property="skull3Img" destination="dzB-1C-1QL" id="5VJ-Rk-Hdk"/>
@@ -161,6 +191,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Restart" width="424" height="83"/>
         <image name="bg" width="768" height="1024"/>
         <image name="food" width="95" height="98"/>
         <image name="ground" width="1444" height="151"/>
