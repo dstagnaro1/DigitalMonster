@@ -66,7 +66,7 @@ class ViewController: UIViewController {
             heartSound.prepareToPlay()
             deathSound.prepareToPlay()
             skullSound.prepareToPlay()
-            
+                        
             musicPlayer.play()
             
         } catch let err as NSError {
@@ -159,6 +159,7 @@ class ViewController: UIViewController {
         deathSound.play()
         monsterImage.playDeadAnimation()
         musicPlayer.stop()
+        musicPlayer.currentTime = 0.0
         
         restartButton.hidden = false
     }
@@ -168,9 +169,7 @@ class ViewController: UIViewController {
         
         current_deaths = 0
         currentItem = 0
-        if musicPlayer.playing {
-            musicPlayer.stop()
-        }
+
         musicPlayer.play()
         
         skull1Img.alpha = DIM_ALPHA

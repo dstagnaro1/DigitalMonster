@@ -37,11 +37,8 @@ class DragImg: UIImageView{
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         
         if let touch = touches.first, let target = dropTarget {
-            
             let position = touch.locationInView(self.superview)
-            
-            if CGRectContainsPoint(target.frame, position) {
-                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "onTargetDropped", object: nil))
+            if CGRectContainsPoint(target.frame, position) {                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "onTargetDropped", object: nil))
             }
             
         }
