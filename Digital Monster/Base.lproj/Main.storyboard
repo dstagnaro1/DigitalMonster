@@ -67,17 +67,20 @@
                                     </imageView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="78" translatesAutoresizingMaskIntoConstraints="NO" id="eZg-DC-gdN" userLabel="ammenetiesStack">
-                                <rect key="frame" x="166" y="106" width="268" height="98"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="eZg-DC-gdN" userLabel="ammenetiesStack">
+                                <rect key="frame" x="145" y="106" width="310" height="98"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="Kxf-YJ-ED5" customClass="DragImg" customModule="Digital_Monster" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="Kxf-YJ-ED5" customClass="DragImg" customModule="Digital_Monster" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="95" height="98"/>
                                         <variation key="heightClass=compact" ambiguous="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="96" height="85"/>
                                         </variation>
                                     </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="qmI-tw-Yod" customClass="DragImg" customModule="Digital_Monster" customModuleProvider="target">
-                                        <rect key="frame" x="173" y="0.0" width="95" height="98"/>
+                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fruit" translatesAutoresizingMaskIntoConstraints="NO" id="3j2-bJ-xyE" customClass="DragImg" customModule="Digital_Monster" customModuleProvider="target">
+                                        <rect key="frame" x="135" y="0.0" width="40" height="98"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food" translatesAutoresizingMaskIntoConstraints="NO" id="qmI-tw-Yod" customClass="DragImg" customModule="Digital_Monster" customModuleProvider="target">
+                                        <rect key="frame" x="215" y="0.0" width="95" height="98"/>
                                         <variation key="heightClass=compact" ambiguous="YES">
                                             <rect key="frame" x="0.0" y="130" width="96" height="98"/>
                                         </variation>
@@ -91,7 +94,7 @@
                                         <exclude reference="usi-4q-VYF"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=compact" axis="vertical" spacing="45">
+                                <variation key="heightClass=compact" axis="vertical">
                                     <mask key="constraints">
                                         <include reference="usi-4q-VYF"/>
                                     </mask>
@@ -178,6 +181,7 @@
                     <connections>
                         <outlet property="foodImage" destination="qmI-tw-Yod" id="p50-Mh-IPO"/>
                         <outlet property="heartImage" destination="Kxf-YJ-ED5" id="9iL-ZD-hK1"/>
+                        <outlet property="lifeFruit" destination="3j2-bJ-xyE" id="m68-Is-TBM"/>
                         <outlet property="monsterImage" destination="A4E-uG-qRb" id="fmD-BK-Dce"/>
                         <outlet property="restartButton" destination="H2z-kd-k7n" id="teG-Ew-F3M"/>
                         <outlet property="skull1Img" destination="WBD-j2-quB" id="7nT-F2-R9A"/>
@@ -194,6 +198,7 @@
         <image name="Restart" width="424" height="83"/>
         <image name="bg" width="768" height="1024"/>
         <image name="food" width="95" height="98"/>
+        <image name="fruit" width="40" height="46"/>
         <image name="ground" width="1444" height="151"/>
         <image name="heart" width="95" height="98"/>
         <image name="idle1" width="889" height="615"/>

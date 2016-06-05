@@ -12,13 +12,15 @@ import AVFoundation
 class ViewController: UIViewController {
     
     @IBOutlet weak var monsterImage: MonsterImg!
+    
     @IBOutlet weak var heartImage: DragImg!
     @IBOutlet weak var foodImage: DragImg!
+    @IBOutlet weak var lifeFruit: DragImg!
     
     @IBOutlet weak var skull1Img: UIImageView!
     @IBOutlet weak var skull2Img: UIImageView!
     @IBOutlet weak var skull3Img: UIImageView!
-    
+
     @IBOutlet weak var restartButton: UIButton!
     
     let DIM_ALPHA: CGFloat = 0.2
@@ -42,6 +44,7 @@ class ViewController: UIViewController {
         
         foodImage.dropTarget = monsterImage
         heartImage.dropTarget = monsterImage
+        lifeFruit.dropTarget = monsterImage
         
         skull1Img.alpha = DIM_ALPHA
         skull2Img.alpha = DIM_ALPHA
@@ -49,10 +52,12 @@ class ViewController: UIViewController {
         
         foodImage.alpha = DIM_ALPHA
         heartImage.alpha = DIM_ALPHA
+        lifeFruit.alpha = DIM_ALPHA
         
         restartButton.hidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.itemDroppedOnCharacter(_:)), name: "onTargetDropped", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.itemDroppedOnCharacterLifeFruit(_:)), name: "onTargetDroppedLifeFruit", object: nil)
         
         do {
             try musicPlayer = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("cave-music", ofType: "mp3")!))
@@ -85,12 +90,27 @@ class ViewController: UIViewController {
         foodImage.userInteractionEnabled = false
         heartImage.alpha = DIM_ALPHA
         heartImage.userInteractionEnabled = false
+        lifeFruit.alpha = DIM_ALPHA
+        lifeFruit.userInteractionEnabled = false
         
         if currentItem == 0 {
             heartSound.play()
         } else {
             biteSound.play()
         }
+    }
+    
+    func itemDroppedOnCharacterLifeFruit(notif: AnyObject) {
+        
+        current_deaths -= 2
+        if current_deaths < 0 {
+            current_deaths = 0
+        }
+        print("current deaths: \(current_deaths)")
+        lightUpSkulls()
+        currentItem = 0
+        
+        itemDroppedOnCharacter(notif)
     }
     
     func startTimer() {
@@ -103,40 +123,45 @@ class ViewController: UIViewController {
     
     func changeGameState() {
         
-        //        foodImage.alpha = DIM_ALPHA
-        //        heartImage.alpha = DIM_ALPHA
-        //        foodImage.userInteractionEnabled = false
-        //        heartImage.userInteractionEnabled = false
+         let rand = arc4random_uniform(9)
+//        let rand = 8
         
-        let rand = arc4random_uniform(2)
-        
-        if rand == 0 {
-            foodImage.alpha = DIM_ALPHA
-            foodImage.userInteractionEnabled = false
-            
+        if rand <= 3 { // if rand == 0
+            // heart active, rest inactive
             heartImage.alpha = OPAQUE
             heartImage.userInteractionEnabled = true
-        } else {
+            
+            lifeFruit.alpha = DIM_ALPHA
+            lifeFruit.userInteractionEnabled = false
+            
+            foodImage.alpha = DIM_ALPHA
+            foodImage.userInteractionEnabled = false
+        } else if rand <= 7 { // else if rand <= 7
+            // food active, rest inactive
             heartImage.alpha = DIM_ALPHA
             heartImage.userInteractionEnabled = false
             
+            lifeFruit.alpha = DIM_ALPHA
+            lifeFruit.userInteractionEnabled = false
+
             foodImage.alpha = OPAQUE
             foodImage.userInteractionEnabled = true
+            
+        } else if rand == 8 {
+            // life fruit active, rest inactive
+            heartImage.alpha = DIM_ALPHA
+            heartImage.userInteractionEnabled = false
+            
+            lifeFruit.alpha = OPAQUE
+            lifeFruit.userInteractionEnabled = true
+            
+            foodImage.alpha = DIM_ALPHA
+            foodImage.userInteractionEnabled = false
         }
         
         if !monsterHappy {
             
-            if current_deaths == 1 {
-                skull1Img.alpha = OPAQUE
-            } else if current_deaths == 2 {
-                skull2Img.alpha = OPAQUE
-            } else if current_deaths >= 3 {
-                skull3Img.alpha = OPAQUE
-            } else {
-                skull1Img.alpha = DIM_ALPHA
-                skull2Img.alpha = DIM_ALPHA
-                skull3Img.alpha = DIM_ALPHA
-            }
+            lightUpSkulls()
             
             if current_deaths >= MAX_DEATHS {
                 gameOver()
@@ -148,12 +173,35 @@ class ViewController: UIViewController {
         monsterHappy = false
     }
     
+    func lightUpSkulls() {
+        
+        if current_deaths == 1 {
+            skull1Img.alpha = OPAQUE
+            skull2Img.alpha = DIM_ALPHA
+            skull3Img.alpha = DIM_ALPHA
+        } else if current_deaths == 2 {
+            skull1Img.alpha = OPAQUE
+            skull2Img.alpha = OPAQUE
+            skull3Img.alpha = DIM_ALPHA
+        } else if current_deaths >= 3 {
+            skull1Img.alpha = OPAQUE
+            skull2Img.alpha = OPAQUE
+            skull3Img.alpha = OPAQUE
+        } else {
+            skull1Img.alpha = DIM_ALPHA
+            skull2Img.alpha = DIM_ALPHA
+            skull3Img.alpha = DIM_ALPHA
+        }
+    }
+    
     func gameOver() {
         
         foodImage.alpha = DIM_ALPHA
         heartImage.alpha = DIM_ALPHA
+        lifeFruit.alpha = DIM_ALPHA
         foodImage.userInteractionEnabled = false
-        heartImage.userInteractionEnabled = false 
+        heartImage.userInteractionEnabled = false
+        lifeFruit.userInteractionEnabled = false
         
         timer.invalidate()
         deathSound.play()
@@ -166,7 +214,6 @@ class ViewController: UIViewController {
     
     @IBAction func onRestartTapped(sender: AnyObject) {
         
-        
         current_deaths = 0
         currentItem = 0
 
@@ -178,6 +225,7 @@ class ViewController: UIViewController {
         
         foodImage.alpha = DIM_ALPHA
         heartImage.alpha = DIM_ALPHA
+        lifeFruit.alpha = DIM_ALPHA
         
         startTimer()
         monsterHappy = false
